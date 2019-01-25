@@ -1,0 +1,8 @@
+{
+  "body": "{\"content\":\"hello world\",\"attachment\":\"hello.jpg\",\"addqId\":\"superQA\"}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "stefan.franzen@addq.se"
+    }
+  }
+}

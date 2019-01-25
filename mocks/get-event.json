@@ -1,0 +1,10 @@
+{
+  "pathParameters": {
+    "id": "fc76e220-1ffc-11e9-821d-3fee9658e36a"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "stefan.franzen@addq.se"
+    }
+  }
+}

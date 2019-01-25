@@ -1,6 +1,8 @@
 # bmc-aws-lambda-serverless
 The AWS Lambda serverless functions serving the frontend. Setup with AWS API Gateway and AWS DynamoDB.
 
+The backend for https://github.com/stefanfranzen/business-model-canvas
+
 ## Installation
 ```
 npm install

@@ -4,16 +4,19 @@ import { success, failure } from "../libs/response-lib";
 
 export async function main(event, context) {
   const data = JSON.parse(event.body);
+  const canvasId = 'Team-Continuous'
+  const blockName = 'key-partners'
   const params = {
-    TableName: "bmc-items",
+    TableName: "BusinessModelCanvas",
     Item: {
-      id: 1,
-      sortingNo: 1,
-      userId: event.requestContext.identity.cognitoIdentityId,
-      noteId: uuid.v1(),
-      content: data.content,
-      attachment: data.attachment,
-      createdAt: Date.now()
+      CanvasBlock: `${canvasId}-${blockName}`,
+      ItemId: uuid.v1(),
+      CanvasId: canvasId,
+      BlockName: blockName,
+      Content: data.content,
+      CreatedBy: event.requestContext.identity.cognitoIdentityId,
+      CreatedAt: Date.now(),
+      LastUpdatedBy: event.requestContext.identity.cognitoIdentityId
     }
   };
 
@@ -21,6 +24,7 @@ export async function main(event, context) {
     await dynamoDbLib.call("put", params);
     return success(params.Item);
   } catch (e) {
+    console.log(e);
     return failure({ status: false });
   }
 }

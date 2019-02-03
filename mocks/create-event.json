@@ -1,5 +1,5 @@
 {
-  "body": "{\"content\":\"hello world\",\"attachment\":\"hello.jpg\",\"addqId\":\"superQA\"}",
+  "body": "{\"content\":\"The network of Business-driven Consultants at ADDQ.\"}",
   "requestContext": {
     "identity": {
       "cognitoIdentityId": "stefan.franzen@addq.se"

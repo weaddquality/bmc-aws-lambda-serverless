@@ -1,7 +1,7 @@
 {
-  "body": "{\"content\":\"new world2\",\"attachment\":\"new.jpg\"}",
+  "body": "{\"content\":\"Updated content here\"}",
   "pathParameters": {
-    "id": "fc76e220-1ffc-11e9-821d-3fee9658e36a"
+    "itemId": "f2acf0a0-27fd-11e9-ad64-1b678af2df21"
   },
   "requestContext": {
     "identity": {

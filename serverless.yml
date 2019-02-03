@@ -1,24 +1,16 @@
-# NOTE: update this with your service name
 service: bmc-aws-lambda-serverless
-
-# Use the serverless-webpack plugin to transpile ES6
 plugins:
   - serverless-webpack
   - serverless-offline
-
-# serverless-webpack configuration
-# Enable auto-packing of external modules
 custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
-
 provider:
   name: aws
   runtime: nodejs8.10
   stage: prod
   region: eu-west-1
-
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -30,14 +22,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:eu-west-1:*:*"
-
 functions:
-  # Defines an HTTP API endpoint that calls the main function in create.js
-  # - path: url path is /notes
-  # - method: POST request
-  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
-  #     domain api call
-  # - authorizer: authenticate using the AWS IAM role
   create:
     handler: lambdas/create.main
     events:
@@ -47,9 +32,6 @@ functions:
           cors: true
           authorizer: aws_iam
   get:
-  # Defines an HTTP API endpoint that calls the main function in get.js
-  # - path: url path is /notes/{id}
-  # - method: GET request
     handler: lambdas/get.main
     events:
       - http:
@@ -58,9 +40,6 @@ functions:
           cors: true
           authorizer: aws_iam
   list:
-    # Defines an HTTP API endpoint that calls the main function in list.js
-    # - path: url path is /notes
-    # - method: GET request
     handler: lambdas/list.main
     events:
       - http:
@@ -69,9 +48,6 @@ functions:
           cors: true
           authorizer: aws_iam
   update:
-    # Defines an HTTP API endpoint that calls the main function in update.js
-    # - path: url path is /notes/{id}
-    # - method: PUT request
     handler: lambdas/update.main
     events:
       - http:
@@ -80,9 +56,6 @@ functions:
           cors: true
           authorizer: aws_iam
   delete:
-    # Defines an HTTP API endpoint that calls the main function in delete.js
-    # - path: url path is /notes/{id}
-    # - method: DELETE request
     handler: lambdas/delete.main
     events:
       - http:

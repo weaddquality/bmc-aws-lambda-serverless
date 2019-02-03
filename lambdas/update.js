@@ -7,9 +7,6 @@ export async function main(event, context) {
   const data = JSON.parse(event.body);
   const params = {
     TableName: "BusinessModelCanvas",
-    // 'Key' defines the partition key and sort key of the item to be updated
-    // - 'userId': Identity Pool identity id of the authenticated user
-    // - 'noteId': path parameter
     Key: {
       CanvasBlock: `${canvasId}-${blockName}`,
       ItemId: event.pathParameters.itemId
@@ -27,7 +24,7 @@ export async function main(event, context) {
   };
 
   try {
-    const result = await dynamoDbLib.call("update", params);
+    await dynamoDbLib.call("update", params);
     return success({ status: true });
   } catch (e) {
     console.log(e);

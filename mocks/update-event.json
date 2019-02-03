@@ -1,5 +1,5 @@
 {
-  "body": "{\"content\":\"Updated content here\"}",
+  "body": "{\"content\":\"Updated content here, again\"}",
   "pathParameters": {
     "itemId": "f2acf0a0-27fd-11e9-ad64-1b678af2df21"
   },

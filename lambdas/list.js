@@ -7,11 +7,9 @@ export async function main(event, context) {
   const params = {
     TableName: "BusinessModelCanvas",
     // 'KeyConditionExpression' defines the condition for the query
-    // - 'userId = :userId': only return items with matching 'userId'
-    //   partition key
+    // - 'CanvasBlock = :CanvasBlock': only return items with matching 'CanvasBlock' partition key
     // 'ExpressionAttributeValues' defines the value in the condition
-    // - ':userId': defines 'userId' to be Identity Pool identity id
-    //   of the authenticated user
+    // - ':CanvasBlock': defines 'CanvasBlock' to be Identity Pool identity id of the authenticated user
     KeyConditionExpression: "CanvasBlock = :CanvasBlock",
     ExpressionAttributeValues: {
       ":CanvasBlock": `${canvasId}-${blockName}`
@@ -20,7 +18,6 @@ export async function main(event, context) {
 
   try {
     const result = await dynamoDbLib.call("query", params);
-    // Return the matching list of items in response body
     return success(result.Items);
   } catch (e) {
     console.log(e);

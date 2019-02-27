@@ -1,26 +1,26 @@
-import * as dynamoDbLib from "../libs/dynamodb-lib";
-import { success, failure } from "../libs/response-lib";
+import * as dynamoDbLib from '../libs/dynamodb-lib'
+import { success, failure } from '../libs/response-lib'
 
 export async function main(event, context) {
-  const canvasId = 'Team-Continuous'
-  const blockName = 'value-proposition'
+  const teamName = 'Team-Continuous'
+  const blockName = 'Value Propositions'
   const params = {
-    TableName: "BusinessModelCanvas",
+    TableName: 'BusinessModelCanvas',
     // 'KeyConditionExpression' defines the condition for the query
     // - 'CanvasBlock = :CanvasBlock': only return items with matching 'CanvasBlock' partition key
     // 'ExpressionAttributeValues' defines the value in the condition
     // - ':CanvasBlock': defines 'CanvasBlock' to be Identity Pool identity id of the authenticated user
-    KeyConditionExpression: "CanvasBlock = :CanvasBlock",
+    KeyConditionExpression: 'TeamNameBlockHeader = :TeamNameBlockHeader',
     ExpressionAttributeValues: {
-      ":CanvasBlock": `${canvasId}-${blockName}`
-    }
-  };
+      ':TeamNameBlockHeader': `${teamName}-${blockName}`,
+    },
+  }
 
   try {
-    const result = await dynamoDbLib.call("query", params);
-    return success(result.Items);
+    const result = await dynamoDbLib.call('query', params)
+    return success(result.Items)
   } catch (e) {
-    console.log(e);
-    return failure({ status: false });
+    console.log(e)
+    return failure({ status: false })
   }
 }

@@ -3,8 +3,7 @@ import { success, failure } from '../libs/response-lib'
 import uuid from 'uuid'
 
 export async function main(event, context) {
-  const data = event.body
-  console.log(event.body)
+  const data = JSON.parse(event.body)
   const params = {
     TableName: data.TableName,
     Item: {

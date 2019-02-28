@@ -3,7 +3,7 @@ import { success, failure } from '../libs/response-lib'
 
 export async function main(event, context) {
   console.log(event)
-  const teamName = event.Item.TeamName
+  const teamName = event.pathParameters.Item.TeamName
   const blockName = 'Value Propositions'
   const params = {
     TableName: 'BusinessModelCanvas',

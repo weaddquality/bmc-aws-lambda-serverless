@@ -2,7 +2,8 @@ import * as dynamoDbLib from '../libs/dynamodb-lib'
 import { success, failure } from '../libs/response-lib'
 
 export async function main(event, context) {
-  const teamName = event.body.Item.TeamName
+  console.log(event)
+  const teamName = event.Item.TeamName
   const blockName = 'Value Propositions'
   const params = {
     TableName: 'BusinessModelCanvas',

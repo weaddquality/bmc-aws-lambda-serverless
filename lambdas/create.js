@@ -3,7 +3,13 @@ import { success, failure } from '../libs/response-lib'
 import uuid from 'uuid'
 
 export async function main(event, context) {
-  const data = JSON.parse(event.body)
+  let data
+  if (typeof event.body === 'string') {
+    data = JSON.parse(event.body)
+  } else {
+    data = event.body
+  }
+
   const params = {
     TableName: data.TableName,
     Item: {

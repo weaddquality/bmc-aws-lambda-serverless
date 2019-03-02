@@ -1,4 +1,7 @@
 {
+  "pathParameters": {
+    "ItemId": "testarItemId"
+  },
   "requestContext": {
     "identity": {
       "cognitoIdentityId": "stefan.franzen@addq.se"

@@ -7,10 +7,10 @@ export async function main(event, context) {
   const params = {
     TableName: data.TableName,
     Item: {
-      TeamNameBlockHeader: `${data.Item.TeamName}-${data.Item.BlockHeader}`,
-      ItemId: uuid.v1(),
-      TeamName: data.Item.TeamName,
-      BlockHeader: data.Item.BlockHeader,
+      Team: data.Item.Team,
+      BlockUuid: `${data.Item.Block}` + uuid.v1(),
+      Team: data.Item.Team,
+      Block: data.Item.Block,
       BlockDescription: data.Item.BlockDescripton,
       ItemHeader: data.Item.ItemHeader,
       ItemText: data.Item.ItemText,

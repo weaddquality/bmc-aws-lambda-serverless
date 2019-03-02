@@ -1,14 +1,5 @@
 {
-  "body": {
-    "TableName": "BusinessModelCanvas",
-    "Item": {
-      "TeamName": "Team-Continuous",
-      "BlockHeader": "Revenue Streams",
-      "BlockDescripton": "What value are our customers willing to pay for",
-      "ItemHeader": "Revenue prop header",
-      "ItemText": "Revenue prop text"
-    }
-  },
+  "body": "{\"table\":\"BusinessModelCanvas\",\"item\":\"{\"team\":\"Team-Continuous\",\"block\":\"Revenue Streams\",\"blockDescripton\":\"What value are our customers willing to pay for\",\"itemHeader\":\"Revenue prop header\",\"itemText\":\"Revenue prop text\"}",
   "requestContext": {
     "identity": {
       "cognitoIdentityId": "stefan.franzen@addq.se"

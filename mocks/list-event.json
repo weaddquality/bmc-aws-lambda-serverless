@@ -1,6 +1,6 @@
 {
   "pathParameters": {
-    "ItemId": "testarItemId"
+    "Team": "Team Continuous"
   },
   "requestContext": {
     "identity": {

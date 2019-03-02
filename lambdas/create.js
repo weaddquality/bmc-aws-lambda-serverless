@@ -4,11 +4,9 @@ import uuid from 'uuid'
 
 export async function main(event, context) {
   let data
-  if (typeof event.body === 'string') {
-    data = JSON.parse(event.body)
-  } else {
-    data = event.body
-  }
+  typeof event.body === 'string'
+    ? (data = JSON.parse(event.body))
+    : (data = event.body)
 
   const params = {
     TableName: data.TableName,

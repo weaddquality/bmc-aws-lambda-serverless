@@ -1,6 +1,7 @@
 {
   "pathParameters": {
-    "itemId": "Value Propositionsdb2982c0-3cc7-11e9-b101-19a0ba48a3d4"
+    "Team": "Team Continuous",
+    "BlockUuid": "Value Propositionsaa815970-3ce2-11e9-948d-3ff2a55bb827"
   },
   "requestContext": {
     "identity": {

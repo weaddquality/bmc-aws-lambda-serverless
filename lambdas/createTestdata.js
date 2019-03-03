@@ -2,6 +2,7 @@ import * as dynamoDbLib from '../libs/dynamodb-lib'
 import { success, failure } from '../libs/response-lib'
 import uuid from 'uuid'
 
+// TODO: Remove console.log statements
 export async function main(event, context) {
   let data
   typeof event.body === 'string'
@@ -10,8 +11,6 @@ export async function main(event, context) {
 
   await Promise.all(
     data.Items.map(async item => {
-      console.log('EVENT BELOW')
-      console.log(item)
       const params = {
         TableName: data.TableName,
         Item: {
@@ -27,12 +26,16 @@ export async function main(event, context) {
           LastUpdatedBy: event.requestContext.identity.cognitoIdentityId,
         },
       }
-      console.log('PARAMS BELOW')
-      console.log(params)
       try {
         console.log('TRY')
         await dynamoDbLib.call('put', params)
-        console.log('AFTER dynamoDbLib.call') // DOES FIRE! ASYNC/AWAIT PROBLEM?
+        console.log(
+          `Created Item:
+          Block: ${params.Item.Block}
+          Team: ${params.Item.Team}
+          ItemText: ${params.Item.ItemText}
+          `
+        ) // DOES FIRE! ASYNC/AWAIT PROBLEM?
         return success(params.Item)
       } catch (e) {
         console.log('CATCH')

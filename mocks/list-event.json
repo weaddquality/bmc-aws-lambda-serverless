@@ -1,5 +1,5 @@
 {
-  "pathParameters": {
+  "queryStringParameters": {
     "Team": "Team Continuous"
   },
   "requestContext": {

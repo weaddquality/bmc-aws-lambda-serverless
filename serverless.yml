@@ -1,4 +1,4 @@
-service: bmc-aws-lambda-serverless
+service: bmc-lambda
 plugins:
   - serverless-webpack
   - serverless-offline
@@ -35,23 +35,25 @@ functions:
     handler: lambdas/get.main
     events:
       - http:
-          path: bmc-items/{id}
+          path: bmc-items/get
           method: get
           cors: true
           authorizer: aws_iam
+          queryStringParameters: ['Team', 'BlockUuid']
   list:
     handler: lambdas/list.main
     events:
       - http:
-          path: bmc-items
+          path: bmc-items/list
           method: get
           cors: true
           authorizer: aws_iam
+          queryStringParameters: ['Team']
   update:
     handler: lambdas/update.main
     events:
       - http:
-          path: bmc-items/{id}
+          path: bmc-items
           method: put
           cors: true
           authorizer: aws_iam
@@ -59,7 +61,7 @@ functions:
     handler: lambdas/delete.main
     events:
       - http:
-          path: bmc-items/{id}
+          path: bmc-items
           method: delete
           cors: true
           authorizer: aws_iam

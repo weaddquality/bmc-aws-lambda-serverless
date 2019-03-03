@@ -1,5 +1,5 @@
 {
-  "pathParameters": {
+  "queryStringParameters": {
     "Team": "Team Continuous",
     "BlockUuid": "Value Propositionsaa815970-3ce2-11e9-948d-3ff2a55bb827"
   },

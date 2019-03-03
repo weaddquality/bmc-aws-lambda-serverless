@@ -2,11 +2,12 @@ import * as dynamoDbLib from '../libs/dynamodb-lib'
 import { success, failure } from '../libs/response-lib'
 
 export async function main(event, context) {
+  console.log('get-lambda-logger: ', event)
   const params = {
     TableName: 'BusinessModelCanvas',
     Key: {
-      Team: event.pathParameters.Team,
-      BlockUuid: event.pathParameters.BlockUuid,
+      Team: event.queryStringParameters.Team,
+      BlockUuid: event.queryStringParameters.BlockUuid,
     },
   }
 

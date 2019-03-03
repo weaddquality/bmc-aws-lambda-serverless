@@ -3,14 +3,18 @@ import { success, failure } from '../libs/response-lib'
 import uuid from 'uuid'
 
 export async function main(event, context) {
-  const data = JSON.parse(event.body)
+  let data
+  typeof event.body === 'string'
+    ? (data = JSON.parse(event.body))
+    : (data = event.body)
+
   const params = {
     TableName: data.TableName,
     Item: {
-      TeamNameBlockHeader: `${data.Item.TeamName}-${data.Item.BlockHeader}`,
-      ItemId: uuid.v1(),
-      TeamName: data.Item.TeamName,
-      BlockHeader: data.Item.BlockHeader,
+      Team: data.Item.Team,
+      BlockUuid: `${data.Item.Block}` + uuid.v1(),
+      Team: data.Item.Team,
+      Block: data.Item.Block,
       BlockDescription: data.Item.BlockDescripton,
       ItemHeader: data.Item.ItemHeader,
       ItemText: data.Item.ItemText,

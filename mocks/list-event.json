@@ -1,4 +1,7 @@
 {
+  "queryStringParameters": {
+    "Team": "Team Continuous"
+  },
   "requestContext": {
     "identity": {
       "cognitoIdentityId": "stefan.franzen@addq.se"

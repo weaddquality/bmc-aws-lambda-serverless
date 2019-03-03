@@ -1,22 +1,20 @@
-import * as dynamoDbLib from "../libs/dynamodb-lib";
-import { success, failure } from "../libs/response-lib";
+import * as dynamoDbLib from '../libs/dynamodb-lib'
+import { success, failure } from '../libs/response-lib'
 
 export async function main(event, context) {
-  const canvasId = 'Team-Continuous'
-  const blockName = 'key-activities'
   const params = {
-    TableName: "BusinessModelCanvas",
+    TableName: 'BusinessModelCanvas',
     Key: {
-      CanvasBlock: `${canvasId}-${blockName}`,
-      ItemId: event.pathParameters.itemId
-    }
-  };
+      Team: event.queryStringParameters.Team,
+      BlockUuid: event.queryStringParameters.BlockUuid,
+    },
+  }
 
   try {
-    await dynamoDbLib.call("delete", params);
-    return success({ status: true });
+    await dynamoDbLib.call('delete', params)
+    return success({ status: true })
   } catch (e) {
-    console.log(e);
-    return failure({ status: false });
+    console.log(e)
+    return failure({ status: false })
   }
 }

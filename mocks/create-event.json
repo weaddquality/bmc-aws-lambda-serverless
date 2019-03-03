@@ -2,11 +2,11 @@
   "body": {
     "TableName": "BusinessModelCanvas",
     "Item": {
-      "TeamName": "Team-Continuous",
-      "BlockHeader": "Revenue Streams",
-      "BlockDescripton": "What value are our customers willing to pay for",
-      "ItemHeader": "Revenue prop header",
-      "ItemText": "Revenue prop text"
+      "Team": "Team Continuous",
+      "Block": "Value Propositions",
+      "BlockDescription": "What value do we deliver to the customer",
+      "ItemHeader": "This item-header",
+      "ItemText": "This item-text"
     }
   },
   "requestContext": {

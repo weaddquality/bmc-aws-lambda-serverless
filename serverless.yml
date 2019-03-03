@@ -27,7 +27,7 @@ functions:
     handler: lambdas/create.main
     events:
       - http:
-          path: bmc-items
+          path: bmc-items/create
           method: post
           cors: true
           authorizer: aws_iam
@@ -53,10 +53,11 @@ functions:
     handler: lambdas/update.main
     events:
       - http:
-          path: bmc-items
+          path: bmc-items/update
           method: put
           cors: true
           authorizer: aws_iam
+          queryStringParameters: ['Team', 'BlockUuid']
   delete:
     handler: lambdas/delete.main
     events:

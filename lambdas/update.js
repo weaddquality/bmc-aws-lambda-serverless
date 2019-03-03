@@ -1,33 +1,30 @@
-import * as dynamoDbLib from "../libs/dynamodb-lib";
-import { success, failure } from "../libs/response-lib";
+import * as dynamoDbLib from '../libs/dynamodb-lib'
+import { success, failure } from '../libs/response-lib'
 
 export async function main(event, context) {
-  const canvasId = 'Team-Continuous'
-  const blockName = 'key-partners'
-  const data = JSON.parse(event.body);
+  let data
+  typeof event.body === 'string'
+    ? (data = JSON.parse(event.body))
+    : (data = event.body)
+
   const params = {
-    TableName: "BusinessModelCanvas",
+    TableName: 'BusinessModelCanvas',
     Key: {
-      CanvasBlock: `${canvasId}-${blockName}`,
-      ItemId: event.pathParameters.itemId
+      Team: event.queryStringParameters.Team,
+      BlockUuid: event.queryStringParameters.BlockUuid,
     },
-    // 'UpdateExpression' defines the attributes to be updated
-    // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET Content = :Content",
+    UpdateExpression: 'SET ItemText = :ItemText',
     ExpressionAttributeValues: {
-      ":Content": data.content || null
+      ':ItemText': data.ItemText || null,
     },
-    // 'ReturnValues' specifies if and how to return the item's attributes,
-    // where ALL_NEW returns all attributes of the item after the update; you
-    // can inspect 'result' below to see how it works with different settings
-    ReturnValues: "ALL_NEW"
-  };
+    ReturnValues: 'ALL_NEW',
+  }
 
   try {
-    await dynamoDbLib.call("update", params);
-    return success({ status: true });
+    await dynamoDbLib.call('update', params)
+    return success({ status: true })
   } catch (e) {
-    console.log(e);
-    return failure({ status: false });
+    console.log(e)
+    return failure({ status: false })
   }
 }

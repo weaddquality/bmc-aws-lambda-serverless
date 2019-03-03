@@ -12,7 +12,7 @@ export async function main(event, context) {
     TableName: data.TableName,
     Item: {
       Team: data.Item.Team,
-      BlockUuid: `${data.Item.Block}` + uuid.v1(),
+      BlockUuid: `${data.Item.Block}_` + uuid.v1(),
       Team: data.Item.Team,
       Block: data.Item.Block,
       BlockDescription: data.Item.BlockDescripton,

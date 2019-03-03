@@ -67,3 +67,11 @@ functions:
           cors: true
           authorizer: aws_iam
           queryStringParameters: ['Team', 'BlockUuid']
+  createTestdata:
+    handler: lambdas/createTestdata.main
+    events:
+      - http:
+          path: bmc-items/createTestdata
+          method: post
+          cors: true
+          authorizer: aws_iam

@@ -13,7 +13,6 @@ export async function main(event, context) {
     Item: {
       Team: data.Item.Team,
       BlockUuid: `${data.Item.Block}_` + uuid.v1(),
-      Team: data.Item.Team,
       Block: data.Item.Block,
       BlockDescription: data.Item.BlockDescripton,
       ItemHeader: data.Item.ItemHeader,

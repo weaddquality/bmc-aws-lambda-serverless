@@ -2,7 +2,6 @@ import * as dynamoDbLib from '../../libs/dynamodb-lib'
 import { success, failure } from '../../libs/response-lib'
 import uuid from 'uuid'
 
-// TODO: Remove console.log statements
 export async function main(event, context) {
   let data
   typeof event.body === 'string'
@@ -27,18 +26,16 @@ export async function main(event, context) {
         },
       }
       try {
-        console.log('TRY')
         await dynamoDbLib.call('put', params)
         console.log(
           `Created Item:
-          Block: ${params.Item.Block}
-          Team: ${params.Item.Team}
-          ItemText: ${params.Item.ItemText}
+            Block: ${params.Item.Block}
+            Team: ${params.Item.Team}
+            ItemText: ${params.Item.ItemText}
           `
-        ) // DOES FIRE! ASYNC/AWAIT PROBLEM?
+        )
         return success(params.Item)
       } catch (e) {
-        console.log('CATCH')
         console.log(e)
         return failure({ status: false })
       }

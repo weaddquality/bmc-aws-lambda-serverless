@@ -1,5 +1,5 @@
-import * as dynamoDbLib from '../libs/dynamodb-lib'
-import { success, failure } from '../libs/response-lib'
+import * as dynamoDbLib from '../../libs/dynamodb-lib'
+import { success, failure } from '../../libs/response-lib'
 import uuid from 'uuid'
 
 // TODO: Remove console.log statements

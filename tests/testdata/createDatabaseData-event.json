@@ -1,0 +1,93 @@
+{
+  "body": {
+    "TableName": "BusinessModelCanvas",
+    "Items": [
+      {
+        "Item": {
+          "Team": "Team Continuous",
+          "Block": "Key Partners",
+          "BlockDescription": "Who are our key partners",
+          "ItemHeader": "This is our keypartners",
+          "ItemText": "Partner X, Partner Y"
+        }
+      },
+      {
+        "Item": {
+          "Team": "Team Continuous",
+          "Block": "Key Activities",
+          "BlockDescription": "What key activities do our value propositions require",
+          "ItemHeader": "Do this",
+          "ItemText": "So that we can achieve X"
+        }
+      },
+      {
+        "Item": {
+          "Team": "Team Continuous",
+          "Block": "Key Resources",
+          "BlockDescription": "What key resources do our value propositions require",
+          "ItemHeader": "Resource Z",
+          "ItemText": "With resource Z we could do words words words"
+        }
+      },
+      {
+        "Item": {
+          "Team": "Team Continuous",
+          "Block": "Value Propositions",
+          "BlockDescription": "What value do we deliver to the customer",
+          "ItemHeader": "Our biggest value",
+          "ItemText": "Is that we continuously evolve, adapt and empower developers in their challenges with X"
+        }
+      },
+      {
+        "Item": {
+          "Team": "Team Continuous",
+          "Block": "Customer Relationships",
+          "BlockDescription": "What type of relationships do our customer segments expect",
+          "ItemHeader": "Our customers demand",
+          "ItemText": "That we're always available for consultations, at choice of time and XYZ"
+        }
+      },
+      {
+        "Item": {
+          "Team": "Team Continuous",
+          "Block": "Channels",
+          "BlockDescription": "How do we reach our customer segments",
+          "ItemHeader": "LinkedIn",
+          "ItemText": "LinkedIn is our main place since people we can recruit as well as people who buy from us, is present in this channel"
+        }
+      },
+      {
+        "Item": {
+          "Team": "Team Continuous",
+          "Block": "Customer Segments",
+          "BlockDescription": "Who are we creating value for",
+          "ItemHeader": "Mature customers",
+          "ItemText": "Customers who has bought consultants before and XYZ"
+        }
+      },
+      {
+        "Item": {
+          "Team": "Team Continuous",
+          "Block": "Cost Structures",
+          "BlockDescription": "What are the important costs inherent in our business model",
+          "ItemHeader": "This costs a lot of stuff",
+          "ItemText": "Here I describe that cost in detail, for instance XYZ"
+        }
+      },
+      {
+        "Item": {
+          "Team": "Team Continuous",
+          "Block": "Revenue Streams",
+          "BlockDescription": "What value are our customers willing to pay for",
+          "ItemHeader": "Consultancy",
+          "ItemText": "We collect our income by consulting"
+        }
+      }
+    ]
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "stefan.franzen@addq.se"
+    }
+  }
+}

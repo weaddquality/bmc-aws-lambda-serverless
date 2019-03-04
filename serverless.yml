@@ -67,11 +67,12 @@ functions:
           cors: true
           authorizer: aws_iam
           queryStringParameters: ['Team', 'BlockUuid']
-  createTestdata:
-    handler: lambdas/createTestdata.main
+  createDatabaseData:
+    handler: tests/testdata/createDatabaseData.main
     events:
       - http:
-          path: bmc-items/createTestdata
+          path: bmc-items/createDatabaseData
           method: post
           cors: true
           authorizer: aws_iam
+          queryStringParameters: ['Team', 'BlockUuid']

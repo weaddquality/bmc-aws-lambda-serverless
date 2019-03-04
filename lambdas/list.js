@@ -12,7 +12,29 @@ export async function main(event, context) {
 
   try {
     const result = await dynamoDbLib.call('query', params)
-    return success(result.Items)
+
+    const blockNames = [
+      'key-partners',
+      'key-activities',
+      'key-resources',
+      'value-propositions',
+      'customer-relationships',
+      'channels',
+      'customer-segments',
+      'cost-structures',
+      'revenue-streams',
+    ]
+    const customResponse = {
+      team: event.queryStringParameters.Team,
+      blocks: blockNames.map(blockName => {
+        const blockItems = result.Items.filter(
+          blockItem =>
+            blockItem.Block.toLowerCase().replace(' ', '-') === blockName
+        )
+        return { block: blockName, items: blockItems }
+      }),
+    }
+    return success(customResponse)
   } catch (e) {
     console.log(e)
     return failure({ status: false })

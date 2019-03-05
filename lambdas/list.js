@@ -31,8 +31,6 @@ export async function main(event, context) {
           blockItem => blockItem.Block === blockName
         )
 
-        // In case of no items in the block:
-        // Return the block with only block name keep the rest empty.
         if (blockItems.length === 0) {
           return {
             block: blockName,
@@ -41,7 +39,6 @@ export async function main(event, context) {
           }
         }
 
-        // Only keep ItemHeader and ItemText on each item.
         const filteredBlockItems = blockItems.map(
           ({ ItemHeader, ItemText }) => ({
             itemHeader: ItemHeader,
@@ -49,8 +46,6 @@ export async function main(event, context) {
           })
         )
 
-        // A bit dirty way to access the BlockDescription.
-        // Not sure what other alternatives we have here..
         return {
           block: blockName,
           blockDescription: blockItems[0].BlockDescription,

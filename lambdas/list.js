@@ -34,6 +34,7 @@ export async function main(event, context) {
         if (blockItems.length === 0) {
           return {
             block: blockName,
+            blockUuid: '',
             blockDescription: '',
             items: [],
           }
@@ -41,7 +42,7 @@ export async function main(event, context) {
 
         const filteredBlockItems = blockItems.map(
           ({ ItemHeader, ItemText }) => ({
-            itemHeader: ItemHeader,
+            ItemHeader: ItemHeader,
             ItemText: ItemText,
           })
         )

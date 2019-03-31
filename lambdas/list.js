@@ -41,11 +41,14 @@ export async function main(event, context) {
         }
 
         const filteredBlockItems = blockItems.map(
-          ({ ItemHeader, ItemText }) => ({
+          ({ BlockUuid, ItemHeader, ItemText }) => ({
+            BlockUuid: BlockUuid,
             ItemHeader: ItemHeader,
             ItemText: ItemText,
           })
         )
+
+        console.log(filteredBlockItems)
 
         return {
           block: blockName,

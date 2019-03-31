@@ -48,8 +48,6 @@ export async function main(event, context) {
           })
         )
 
-        console.log(filteredBlockItems)
-
         return {
           block: blockName,
           blockDescription: blockItems[0].BlockDescription,

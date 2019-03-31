@@ -1,10 +1,10 @@
 {
   "body": {
-    "ItemText": "Update works!"
+    "ItemText": "That we're always available for consultations, at choice of time and ZZZ"
   },
   "queryStringParameters": {
     "Team": "Team Continuous",
-    "BlockUuid": "Value Propositions_9d540890-3d57-11e9-b2cd-d33aa322d60e"
+    "BlockUuid": "Customer Relationships_c3ca0190-50d6-11e9-b680-e7235f014de9"
   },
   "requestContext": {
     "identity": {

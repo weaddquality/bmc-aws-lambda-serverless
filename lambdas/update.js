@@ -13,8 +13,9 @@ export async function main(event, context) {
       Team: event.queryStringParameters.Team,
       BlockUuid: event.queryStringParameters.BlockUuid,
     },
-    UpdateExpression: 'SET ItemText = :ItemText',
+    UpdateExpression: 'SET ItemHeader = :ItemHeader, ItemText = :ItemText',
     ExpressionAttributeValues: {
+      ':ItemHeader': data.ItemHeader || null,
       ':ItemText': data.ItemText || null,
     },
     ReturnValues: 'ALL_NEW',

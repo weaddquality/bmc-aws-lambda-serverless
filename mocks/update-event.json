@@ -1,6 +1,7 @@
 {
   "body": {
-    "ItemText": "That we're always available for consultations, at choice of time and ZZZ"
+    "ItemHeader": "Our customers demand",
+    "ItemText": "That we're always available for consultations, at choice of time and ZZZ YYY"
   },
   "queryStringParameters": {
     "Team": "Team Continuous",

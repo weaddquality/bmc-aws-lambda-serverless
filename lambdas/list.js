@@ -1,5 +1,17 @@
 import * as dynamoDbLib from '../libs/dynamodb-lib'
 import { success, failure } from '../libs/response-lib'
+import {
+  KEY_PARTNERS,
+  KEY_ACTIVITIES,
+  KEY_RESOURCES,
+  VALUE_PROPOSITIONS,
+  CUSTOMER_RELATIONSHIPS,
+  CHANNELS,
+  CUSTOMERS_SEGMENTS,
+  COST_STRUCTURES,
+  REVENUE_STREAMS,
+} from '../constants/constants'
+import util from 'util'
 
 export async function main(event, context) {
   const params = {
@@ -14,47 +26,53 @@ export async function main(event, context) {
     const result = await dynamoDbLib.call('query', params)
 
     const blockNames = [
-      'Key Partners',
-      'Key Activities',
-      'Key Resources',
-      'Value Propositions',
-      'Customer Relationships',
-      'Channels',
-      'Customer Segments',
-      'Cost Structures',
-      'Revenue Streams',
+      KEY_PARTNERS,
+      KEY_ACTIVITIES,
+      KEY_RESOURCES,
+      VALUE_PROPOSITIONS,
+      CUSTOMER_RELATIONSHIPS,
+      CHANNELS,
+      CUSTOMERS_SEGMENTS,
+      COST_STRUCTURES,
+      REVENUE_STREAMS,
     ]
+
+    const blocksWithItems = {}
+
+    blockNames.forEach(blockName => {
+      const blockItems = result.Items.filter(
+        blockItem => blockItem.Block === blockName
+      )
+
+      if (blockItems.length === 0) {
+        blocksWithItems[blockName] = {
+          blockDescription: '',
+          items: [],
+        }
+        return
+      }
+
+      const filteredBlockItems = blockItems.map(
+        ({ BlockUuid, ItemHeader, ItemText }) => ({
+          BlockUuid: BlockUuid,
+          ItemHeader: ItemHeader,
+          ItemText: ItemText,
+        })
+      )
+
+      blocksWithItems[blockName] = {
+        blockDescription: blockItems[0].BlockDescription,
+        items: filteredBlockItems,
+      }
+      return
+    })
+
     const customResponse = {
       team: event.queryStringParameters.Team,
-      blocks: blockNames.map(blockName => {
-        const blockItems = result.Items.filter(
-          blockItem => blockItem.Block === blockName
-        )
-
-        if (blockItems.length === 0) {
-          return {
-            block: blockName,
-            blockUuid: '',
-            blockDescription: '',
-            items: [],
-          }
-        }
-
-        const filteredBlockItems = blockItems.map(
-          ({ BlockUuid, ItemHeader, ItemText }) => ({
-            BlockUuid: BlockUuid,
-            ItemHeader: ItemHeader,
-            ItemText: ItemText,
-          })
-        )
-
-        return {
-          block: blockName,
-          blockDescription: blockItems[0].BlockDescription,
-          items: filteredBlockItems,
-        }
-      }),
+      blocks: blocksWithItems,
     }
+
+    console.log(util.inspect(customResponse, { depth: Infinity }))
     return success(customResponse)
   } catch (e) {
     console.log(e)

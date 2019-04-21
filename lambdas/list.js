@@ -11,7 +11,6 @@ import {
   COST_STRUCTURES,
   REVENUE_STREAMS,
 } from '../constants/constants'
-import util from 'util'
 
 export async function main(event, context) {
   const params = {
@@ -71,8 +70,6 @@ export async function main(event, context) {
       team: event.queryStringParameters.Team,
       blocks: blocksWithItems,
     }
-
-    console.log(util.inspect(customResponse, { depth: Infinity }))
     return success(customResponse)
   } catch (e) {
     console.log(e)

@@ -1,16 +1,6 @@
 import * as dynamoDbLib from '../libs/dynamodb-lib'
 import { success, failure } from '../libs/response-lib'
-import {
-  KEY_PARTNERS,
-  KEY_ACTIVITIES,
-  KEY_RESOURCES,
-  VALUE_PROPOSITIONS,
-  CUSTOMER_RELATIONSHIPS,
-  CHANNELS,
-  CUSTOMERS_SEGMENTS,
-  COST_STRUCTURES,
-  REVENUE_STREAMS,
-} from '../constants/constants'
+import { BLOCKNAMES } from '../constants/constants'
 
 export async function main(event, context) {
   const params = {
@@ -24,21 +14,9 @@ export async function main(event, context) {
   try {
     const result = await dynamoDbLib.call('query', params)
 
-    const blockNames = [
-      KEY_PARTNERS,
-      KEY_ACTIVITIES,
-      KEY_RESOURCES,
-      VALUE_PROPOSITIONS,
-      CUSTOMER_RELATIONSHIPS,
-      CHANNELS,
-      CUSTOMERS_SEGMENTS,
-      COST_STRUCTURES,
-      REVENUE_STREAMS,
-    ]
-
     const blocksWithItems = {}
 
-    blockNames.forEach(blockName => {
+    BLOCKNAMES.forEach(blockName => {
       const blockItems = result.Items.filter(
         blockItem => blockItem.Block === blockName
       )

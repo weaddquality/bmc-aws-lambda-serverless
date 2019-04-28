@@ -7,3 +7,14 @@ export const CHANNELS = 'Channels'
 export const CUSTOMERS_SEGMENTS = 'Customer Segments'
 export const COST_STRUCTURES = 'Cost Structures'
 export const REVENUE_STREAMS = 'Revenue Streams'
+export const BLOCKNAMES = [
+  KEY_PARTNERS,
+  KEY_ACTIVITIES,
+  KEY_RESOURCES,
+  VALUE_PROPOSITIONS,
+  CUSTOMER_RELATIONSHIPS,
+  CHANNELS,
+  CUSTOMERS_SEGMENTS,
+  COST_STRUCTURES,
+  REVENUE_STREAMS,
+]

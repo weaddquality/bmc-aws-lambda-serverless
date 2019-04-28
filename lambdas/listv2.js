@@ -47,7 +47,7 @@ export async function main(event, context) {
         blocksWithItems[blockName] = {
           blockDescription: '',
           items: [],
-          kebabCase: blockName.toLowerCase().replace(' ', '-'),
+          blockInKebabCase: blockName.toLowerCase().replace(' ', '-'),
         }
         return
       }
@@ -63,7 +63,7 @@ export async function main(event, context) {
       blocksWithItems[blockName] = {
         blockDescription: blockItems[0].BlockDescription,
         items: filteredBlockItems,
-        kebabCase: blockName.toLowerCase().replace(' ', '-'),
+        blockInKebabCase: blockName.toLowerCase().replace(' ', '-'),
       }
       return
     })

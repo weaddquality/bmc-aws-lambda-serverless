@@ -21,7 +21,7 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:eu-west-1:*:*"
+      Resource: 'arn:aws:dynamodb:eu-west-1:*:*'
 functions:
   create:
     handler: lambdas/create.main
@@ -45,6 +45,15 @@ functions:
     events:
       - http:
           path: bmc-items/list
+          method: get
+          cors: true
+          authorizer: aws_iam
+          queryStringParameters: ['Team']
+  listv2:
+    handler: lambdas/listv2.main
+    events:
+      - http:
+          path: bmc-items/listv2
           method: get
           cors: true
           authorizer: aws_iam

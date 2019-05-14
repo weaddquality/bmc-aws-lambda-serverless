@@ -30,13 +30,14 @@ export async function main(event, context) {
         return
       }
 
-      const filteredBlockItems = blockItems.map(
-        ({ BlockUuid, ItemHeader, ItemText }) => ({
+      const filteredBlockItems = blockItems
+        .map(({ BlockUuid, ItemHeader, ItemText, CreatedAt }) => ({
           BlockUuid: BlockUuid,
           ItemHeader: ItemHeader,
           ItemText: ItemText,
-        })
-      )
+          CreatedAt: CreatedAt,
+        }))
+        .sort((a, b) => a.CreatedAt - b.CreatedAt)
 
       blocksWithItems[blockName] = {
         blockDescription: blockItems[0].BlockDescription,

@@ -49,15 +49,6 @@ functions:
           cors: true
           authorizer: aws_iam
           queryStringParameters: ['Team']
-  listv2:
-    handler: lambdas/listv2.main
-    events:
-      - http:
-          path: bmc-items/listv2
-          method: get
-          cors: true
-          authorizer: aws_iam
-          queryStringParameters: ['Team']
   update:
     handler: lambdas/update.main
     events:

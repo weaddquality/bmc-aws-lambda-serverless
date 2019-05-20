@@ -1,5 +1,6 @@
 import * as dynamoDbLib from '../libs/dynamodb-lib'
 import { success, failure } from '../libs/response-lib'
+import { BLOCKNAMES } from '../constants/constants'
 
 export async function main(event, context) {
   const params = {
@@ -13,47 +14,42 @@ export async function main(event, context) {
   try {
     const result = await dynamoDbLib.call('query', params)
 
-    const blockNames = [
-      'Key Partners',
-      'Key Activities',
-      'Key Resources',
-      'Value Propositions',
-      'Customer Relationships',
-      'Channels',
-      'Customer Segments',
-      'Cost Structures',
-      'Revenue Streams',
-    ]
+    const blocksWithItems = {}
+
+    BLOCKNAMES.forEach(blockName => {
+      const blockItems = result.Items.filter(
+        blockItem => blockItem.Block === blockName
+      )
+
+      if (blockItems.length === 0) {
+        blocksWithItems[blockName] = {
+          blockDescription: '',
+          items: [],
+          blockInKebabCase: blockName.toLowerCase().replace(' ', '-'),
+        }
+        return
+      }
+
+      const filteredBlockItems = blockItems
+        .map(({ BlockUuid, ItemHeader, ItemText, CreatedAt }) => ({
+          BlockUuid: BlockUuid,
+          ItemHeader: ItemHeader,
+          ItemText: ItemText,
+          CreatedAt: CreatedAt,
+        }))
+        .sort((a, b) => a.CreatedAt - b.CreatedAt)
+
+      blocksWithItems[blockName] = {
+        blockDescription: blockItems[0].BlockDescription,
+        items: filteredBlockItems,
+        blockInKebabCase: blockName.toLowerCase().replace(' ', '-'),
+      }
+      return
+    })
+
     const customResponse = {
       team: event.queryStringParameters.Team,
-      blocks: blockNames.map(blockName => {
-        const blockItems = result.Items.filter(
-          blockItem => blockItem.Block === blockName
-        )
-
-        if (blockItems.length === 0) {
-          return {
-            block: blockName,
-            blockUuid: '',
-            blockDescription: '',
-            items: [],
-          }
-        }
-
-        const filteredBlockItems = blockItems.map(
-          ({ BlockUuid, ItemHeader, ItemText }) => ({
-            BlockUuid: BlockUuid,
-            ItemHeader: ItemHeader,
-            ItemText: ItemText,
-          })
-        )
-
-        return {
-          block: blockName,
-          blockDescription: blockItems[0].BlockDescription,
-          items: filteredBlockItems,
-        }
-      }),
+      blocks: blocksWithItems,
     }
     return success(customResponse)
   } catch (e) {
